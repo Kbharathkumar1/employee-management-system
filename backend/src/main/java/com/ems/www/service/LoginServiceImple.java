@@ -41,6 +41,7 @@ public class LoginServiceImple implements LoginService {
 	        Map<String,Object> response = new HashMap<>();
 
 	        response.put("message","Login successful");
+	        response.put("role",dbUser.getRole());
 	        response.put("id",dbUser.getId());
 	        response.put("email",dbUser.getEmail());
 

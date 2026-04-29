@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 
 function Register() {
-  // Simple separate states (much easier to understand)
+  // Simple separate states
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [mobile, setMobile] = useState('');
@@ -17,6 +17,37 @@ function Register() {
   const [passwordError, setPasswordError] = useState('');
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  //handling
+  function handleFirstNameChange(e) {
+    const value = e.target.value;
+    setFirstName(value);
+    setFirstNameError(validateFirstName(value));
+  }
+
+  function handleLastNameChange(e) {
+    const value = e.target.value;
+    setLastName(value);
+    setLastNameError(validateLastName(value));
+  }
+
+  function handleMobileChange(e) {
+    const value = e.target.value;
+    setMobile(value);
+    setMobileError(validateMobile(value));
+  }
+
+  function handleEmailChange(e) {
+    const value = e.target.value;
+    setEmail(value);
+    setEmailError(validateEmail(value));
+  }
+
+  function handlePasswordChange(e) {
+    const value = e.target.value;
+    setPassword(value);
+    setPasswordError(validatePassword(value));
+  }
 
   // Simple validation
   function validateFirstName(value) {
@@ -54,36 +85,7 @@ function Register() {
     return '';
   }
 
-  function handleFirstNameChange(e) {
-    const value = e.target.value;
-    setFirstName(value);
-    setFirstNameError(validateFirstName(value));
-  }
-
-  function handleLastNameChange(e) {
-    const value = e.target.value;
-    setLastName(value);
-    setLastNameError(validateLastName(value));
-  }
-
-  function handleMobileChange(e) {
-    const value = e.target.value;
-    setMobile(value);
-    setMobileError(validateMobile(value));
-  }
-
-  function handleEmailChange(e) {
-    const value = e.target.value;
-    setEmail(value);
-    setEmailError(validateEmail(value));
-  }
-
-  function handlePasswordChange(e) {
-    const value = e.target.value;
-    setPassword(value);
-    setPasswordError(validatePassword(value));
-  }
-
+  
   async function handleSubmit(e) {
     e.preventDefault();
     
@@ -114,35 +116,28 @@ function Register() {
       };
       
       console.log('Sending to backend:', userData);
-      
-      // Send to backend (example)
-      // fetch('http://localhost:5000/api/register', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(userData)
-      // });
 
       try{
- const res = await axios.post("http://localhost:9191/api/register", userData);
+        const res = await axios.post("http://localhost:9191/api/register", userData);
 
- console.log(res.data);
- alert("Registration Successful");
- setFirstName(''); 
- setLastName('');
-  setMobile('');
-  setEmail(''); 
-  setPassword('');
-   setIsSubmitting(false);
+        console.log(res.data);
+        alert("Registration Successful");
+        setFirstName(''); 
+        setLastName('');
+          setMobile('');
+          setEmail(''); 
+          setPassword('');
+          setIsSubmitting(false);
 
-}catch(error){
+        }catch(error){
 
- if(error.response){
-   alert(error.response.data.message || "Email already in use. Please login");
- }else{
-   alert("Something went wrong");
- }
+        if(error.response){
+          alert(error.response.data.message || "Email already in use. Please login");
+        }else{
+          alert("Something went wrong");
+        }
 
-}
+        }
     }
   }
 

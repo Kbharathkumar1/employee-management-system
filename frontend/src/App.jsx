@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/LoginPage';
 import EmployeeTable from './components/employee/EmployeeTable';
 
+
 function App() {
 
   return (
@@ -13,8 +14,7 @@ function App() {
     <Routes>
       <Route path='/register' element={<Register/>} ></Route>
       <Route path='/login' element={<Login/>} ></Route>
-      <Route path='employees' element={ <EmployeeTable/> } ></Route>
-      
+      <Route path='/employees' element={ <EmployeeTable/> } ></Route>
     </Routes>
     </BrowserRouter>
     </>

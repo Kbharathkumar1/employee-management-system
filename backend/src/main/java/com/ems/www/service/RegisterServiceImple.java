@@ -22,6 +22,7 @@ public class RegisterServiceImple implements RegisterService {
 		String encodedpswd= passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedpswd);
 		
+		user.setRole("USER");
 		
 		if(registerRepo.existsByEmail(user.getEmail())) {
 			throw new RuntimeException("Email Already exists...");

@@ -41,24 +41,15 @@ function Login() {
 
       console.log("Login request:", loginData);
 
-
-
-      // const res = await axios.post("http://localhost:9191/api/login", loginData);
-
-      // console.log(res.data);
-
-      // alert(res.data.message);
-
       try{
 
- let res = await axios.post(
-   "http://localhost:9191/api/login",
-   loginData
- );
+ let res = await axios.post("http://localhost:9191/api/login",loginData);
+
+ localStorage.setItem("role", res.data.role);
 
  alert(res.data.message);
 
- navigate("/userdashboard");
+ navigate("/employees");
 
 }
 catch(error){

@@ -20,6 +20,7 @@ public class Register {
 	private String email;
 	private String mobile;
 	private String password;
+	private String role;
 	
 	
 	//0-arg constructor or default
@@ -29,7 +30,7 @@ public class Register {
 	}
 
 	//parameterised constructor
-	public Register(Long id, String firstName, String lastName, String email, String mobile, String password) {
+	public Register(Long id, String firstName, String lastName, String email, String mobile, String password, String role) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -37,6 +38,7 @@ public class Register {
 		this.email = email;
 		this.mobile = mobile;
 		this.password = password;
+		this.role = role;
 	}
 	
 	//setters and getters
@@ -75,5 +77,13 @@ public class Register {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }
