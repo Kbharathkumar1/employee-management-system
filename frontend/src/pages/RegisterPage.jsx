@@ -119,7 +119,7 @@ function Register() {
       console.log('Sending to backend:', userData);
 
       try{
-        const res = await axios.post("http://localhost:9191/api/register", userData);
+        const res = await axios.post("https://employee-management-system-3-ril3.onrender.com/api/register", userData);
 
         console.log(res.data);
         alert("Registration Successful");
