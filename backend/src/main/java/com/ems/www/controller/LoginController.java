@@ -13,7 +13,7 @@ import com.ems.www.model.Register;
 import com.ems.www.service.LoginService;
 
 @RestController
-@CrossOrigin("https://employee-management-system-pmwju8psi-bharaths-projects-2975e4f1.vercel.app")
+@CrossOrigin(origins ="https://employee-management-system-pmwju8psi-bharaths-projects-2975e4f1.vercel.app")
 @RequestMapping("/api")
 public class LoginController {
 	@Autowired
