@@ -12,7 +12,7 @@ import com.ems.www.service.RegisterService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("http://localhost:5173/")
+@CrossOrigin("https://employee-management-system-pmwju8psi-bharaths-projects-2975e4f1.vercel.app")
 public class RegisterController {
 	
 	@Autowired
