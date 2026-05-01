@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ems.www.model.Employee;
 import com.ems.www.service.EmployeeService;
 
-@CrossOrigin(origins ="https://employee-management-system-pmwju8psi-bharaths-projects-2975e4f1.vercel.app")
+@CrossOrigin(origins ="https://employee-management-system-sigma-topaz.vercel.app/")
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {

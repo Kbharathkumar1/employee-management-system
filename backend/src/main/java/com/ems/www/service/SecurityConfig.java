@@ -21,16 +21,17 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-            // 1. INTEGRATE CORS HERE
+            // 1. INTEGRATE CORS HERE (Modified to be more flexible for testing)
             .cors(cors -> cors.configurationSource(request -> {
                 CorsConfiguration config = new CorsConfiguration();
-                config.setAllowedOrigins(Collections.singletonList("https://employee-management-system-sigma-topaz.vercel.app"));
+                // We use setAllowedOriginPatterns("*") to allow ANY domain during this test
+                config.setAllowedOriginPatterns(Collections.singletonList("*"));
                 config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 config.setAllowedHeaders(Collections.singletonList("*"));
                 config.setAllowCredentials(true);
                 return config;
             }))
-            // 2. DISABLE CSRF (Required for POST requests from Vercel)
+            // 2. DISABLE CSRF (Crucial for the POST request to move past "Pending")
             .csrf(csrf -> csrf.disable())
             // 3. YOUR EXISTING AUTH RULES
             .authorizeHttpRequests(auth -> auth
