@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 function Register() {
   // Simple separate states
@@ -211,6 +212,11 @@ function Register() {
                   {passwordError && <div className="invalid-feedback">{passwordError}</div>}
                   <small className="text-muted">Min 6 chars, 1 uppercase, 1 number</small>
                 </div>
+
+                <div className="text-center mt-3">
+  <span>Already have an account? </span>
+  <Link to="/login">Login</Link>
+</div>
 
                 <button type="submit" className="btn btn-primary w-100" disabled={isSubmitting}>
                   {isSubmitting ? 'Registering...' : 'Register'}

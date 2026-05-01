@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
 
@@ -19,45 +20,38 @@ function Login() {
 
   function validatePassword(value) {
     if (!value) return "Password required";
+    if (value.length < 6) return 'Minimum 6 characters';
+    if (!/[A-Z]/.test(value)) return 'Need one uppercase letter';
+    if (!/[0-9]/.test(value)) return 'Need one number';
     return "";
+
   }
 
   async function handleLogin(e) {
-    e.preventDefault();
+  e.preventDefault();
 
+  const eErr = validateEmail(email);
+  const pErr = validatePassword(password);
 
-    const eErr = validateEmail(email);
-    const pErr = validatePassword(password);
+  setEmailError(eErr);
+  setPasswordError(pErr);
 
-    setEmailError(eErr);
-    setPasswordError(pErr);
+  if (!eErr && !pErr) {
+    const loginData = {
+      email: email,
+      password: password
+    };
 
-    if (!eErr && !pErr) {
-
-      const loginData = {
-        email:email,
-        password:password
-      };
-
-      console.log("Login request:", loginData);
-
-      try{
-
- let res = await axios.post("http://localhost:9191/api/login",loginData);
-
- localStorage.setItem("role", res.data.role);
-
- alert(res.data.message);
-
- navigate("/employees");
-
-}
-catch(error){
-   alert(error.response.data.message);
-}
-
+    try {
+      let res = await axios.post("http://localhost:9191/api/login", loginData);
+      localStorage.setItem("user", JSON.stringify(res.data));
+      alert(res.data.message);
+      navigate("/employees");
+    } catch (error) {
+      alert(error.response?.data?.message || "Login failed");
     }
   }
+}
 
   return (
     <div className="container mt-5">
@@ -86,6 +80,11 @@ catch(error){
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="text-danger"> {passwordError && <p>{passwordError}</p>} </div>
+
+          <div className="text-center mt-3">
+  <span>Don't have an account? </span>
+  <Link to="/register">Register</Link>
+</div>
 
           <button className="btn btn-primary w-100">
             Login

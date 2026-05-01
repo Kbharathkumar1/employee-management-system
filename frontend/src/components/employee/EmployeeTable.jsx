@@ -4,7 +4,9 @@ import EmployeeForm from "./EmployeeForm";
 
 function EmployeeTable(){
 
-  var role=localStorage.getItem("role");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const role = user?.role;
+  // var role=localStorage.getItem("role");
 
   const isAdmin = role==="ADMIN";
 const isUser = role==="USER";
@@ -93,9 +95,7 @@ return(
 <div className="container mt-5">
 
 
-<nav className="navbar navbar-dark bg-dark rounded px-4 mb-4">
-  <h3 className="text-white m-0">--------Employee Management System (EMS) Admin Dashboard--------</h3>
-</nav>
+
 
 <div className="card shadow p-3 mb-4">
   <h4>Dashboard Overview</h4>

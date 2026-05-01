@@ -1,24 +1,29 @@
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import './App.css'
-import Register from './pages/RegisterPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './pages/LoginPage';
-import EmployeeTable from './components/employee/EmployeeTable';
+import { BrowserRouter, useLocation } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
+import Navbar from "./components/common/Navbar";
 
+function AppContent() {
+  const location = useLocation();
 
-function App() {
+  const hideNavbarRoutes = ["/login", "/register"];
+
+  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
 
   return (
     <>
-      <BrowserRouter>
-    <Routes>
-      <Route path='/register' element={<Register/>} ></Route>
-      <Route path='/login' element={<Login/>} ></Route>
-      <Route path='/employees' element={ <EmployeeTable/> } ></Route>
-    </Routes>
-    </BrowserRouter>
+      {!shouldHideNavbar && <Navbar />}
+      <AppRoutes />
     </>
-  )
+  );
 }
 
-export default App
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
+export default App;
